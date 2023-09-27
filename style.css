@@ -1,0 +1,29 @@
+header {
+    background-color: #007bff;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Customize the search input */
+#search-input {
+    border-color: #007bff;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Style the recipe list */
+#recipe-list {
+    margin-top: 20px;
+}
+
+.recipe-item {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
