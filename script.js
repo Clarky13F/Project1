@@ -3,15 +3,15 @@ const recipes = [
     { name: 'Chicken Alfredo', description: 'Creamy pasta dish with grilled chicken and Alfredo sauce.' },
     { name: 'Vegetable Stir-Fry', description: 'Stir-fried vegetables with tofu in a savory sauce.' },
     { name: 'Homemade Pizza', description: 'Delicious homemade pizza with your favorite toppings.' },
-    // Add more recipes here...
+    
 ];
 
 const searchInput = document.getElementById('search-input');
 const recipeList = document.getElementById('recipe-list');
 
-// Function to display recipes based on search input
+
 function displayRecipes(searchTerm) {
-    recipeList.innerHTML = ''; // Clear previous results
+    recipeList.innerHTML = ''; 
 
     const filteredRecipes = recipes.filter(recipe =>
         recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -33,7 +33,7 @@ function displayRecipes(searchTerm) {
     });
 }
 
-// Event listener for input changes
+
 searchInput.addEventListener('input', () => {
     const searchTerm = searchInput.value.trim();
     displayRecipes(searchTerm);
@@ -56,7 +56,7 @@ function initClient() {
         apiKey: 'put our own api key to use',
         discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"],
     }).then(function () {
-        // API is ready
+        
         console.log('api ready');
     });
 }
