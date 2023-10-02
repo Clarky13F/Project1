@@ -27,3 +27,18 @@ h1 {
     padding: 10px;
     border-radius: 5px;
 }
+
+button {
+    border: none;
+    appearance: none;
+    cursor: pointer;
+    background-color: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px;
+
+}
+
+ 
+  

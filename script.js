@@ -83,3 +83,7 @@ function searchVideos(query) {
 }
 
 formEl.addEventListener("submit", handleSearch)
+
+//Local Storage
+localStorage.setItem( "Recipes", recipeList);
+localStorage.setItem("Ingredients", searchInput);
