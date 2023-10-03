@@ -93,7 +93,7 @@ $("#search-test1").click(function handleSearch2 () {
         console.log(data);
         console.log(data.hits[0].recipe.label);
         for(let i = 0; i < data.hits.length; i++) {
-        $("<p />", { text: data.hits[i].recipe.label }).appendTo("#recipe-list");
+            $("<p />", { text: data.hits[i].recipe.label }).appendTo("#recipe-list");
         }
     });
 });
@@ -103,13 +103,13 @@ var edamamIngredientAppId = "d01e0992";
 var edamamIngredientAppKey = "05456ac1f21695133da813475b3f88f8";
 var exampleIngredientChicken = "chicken";
 
-    $("#search-test2").click(function handleSearch3 () {
-        $("#Ingredient-list").html("");
-        $.get(`https://api.edamam.com/search?app_id=${edamamIngredientAppId}&app_key=${edamamIngredientAppKey}&q=${exampleIngredientChicken}`, function (data) {
-            console.log(data);
-            console.log(data.hits[0].recipe.label);
-            for(let i = 0; i < data.hits.length; i++) {
-            $("<p />", { text: data.hits[i].recipe.label }).appendTo("#recipe-list");
-            }
-        });
+$("#search-test2").click(function handleSearch3 () {
+    $("#ingredient-list").html("");
+    $.get(`https://api.edamam.com/api/food-database/v2/parser?app_id=${edamamIngredientAppId}&app_key=${edamamIngredientAppKey}&ingr=${exampleIngredientChicken}`, function (data) {
+        console.log(data);
+        console.log(data.hints[0].food.label);
+        for(let i = 0; i < data.hints.length; i++) {
+            $("<p />", { text: data.hints[i].food.label }).appendTo("#ingredient-list");
+        }
     });
+});
