@@ -1,10 +1,10 @@
-const recipes = [
-    { name: 'Spaghetti Carbonara', description: 'A classic Italian pasta dish with eggs, cheese, and pancetta.' },
-    { name: 'Chicken Alfredo', description: 'Creamy pasta dish with grilled chicken and Alfredo sauce.' },
-    { name: 'Vegetable Stir-Fry', description: 'Stir-fried vegetables with tofu in a savory sauce.' },
-    { name: 'Homemade Pizza', description: 'Delicious homemade pizza with your favorite toppings.' },
+// const recipes = [
+//     { name: 'Spaghetti Carbonara', description: 'A classic Italian pasta dish with eggs, cheese, and pancetta.' },
+//     { name: 'Chicken Alfredo', description: 'Creamy pasta dish with grilled chicken and Alfredo sauce.' },
+//     { name: 'Vegetable Stir-Fry', description: 'Stir-fried vegetables with tofu in a savory sauce.' },
+//     { name: 'Homemade Pizza', description: 'Delicious homemade pizza with your favorite toppings.' },
     
-];
+// ];
 
 const searchInput = document.getElementById('search-input');
 const recipeList = document.getElementById('recipe-list');
