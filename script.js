@@ -1,10 +1,12 @@
-const recipes = [
+const defaultRecipes = [
     { name: 'Spaghetti Carbonara', description: 'A classic Italian pasta dish with eggs, cheese, and pancetta.' },
     { name: 'Chicken Alfredo', description: 'Creamy pasta dish with grilled chicken and Alfredo sauce.' },
     { name: 'Vegetable Stir-Fry', description: 'Stir-fried vegetables with tofu in a savory sauce.' },
     { name: 'Homemade Pizza', description: 'Delicious homemade pizza with your favorite toppings.' },
     // Add more recipes here...
 ];
+
+var recipes = JSON.parse(localStorage.getItem('recipes')) || defaultRecipes;
 
 const searchInput = document.getElementById('search-input');
 const recipeList = document.getElementById('recipe-list');
@@ -31,7 +33,14 @@ function displayRecipes(searchTerm) {
         `;
         recipeList.appendChild(recipeItem);
     });
-}
+
+    const favButton = document.createElement('button');
+    favButton.textContent = 'Favorite me!';
+    document.body.appendChild(favButton)
+
+    favButton.addEventListener('click', () => {
+    alert('Favorite button clicked!');
+})
 
 // Event listener for input changes
 searchInput.addEventListener('input', () => {
@@ -83,7 +92,4 @@ function searchVideos(query) {
 }
 
 formEl.addEventListener("submit", handleSearch)
-
-//Local Storage
-localStorage.setItem( "Recipes", recipeList);
-localStorage.setItem("Ingredients", searchInput);
+}
