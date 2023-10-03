@@ -39,8 +39,8 @@ searchInput.addEventListener('input', () => {
     displayRecipes(searchTerm);
 });
 
-
-displayRecipes('');
+// Initial display of all recipes
+// displayRecipes('');
 
 
 
@@ -49,7 +49,7 @@ displayRecipes('');
 const formEl = document.querySelector("#search-form");
 
 
-gapi.load('client', initClient);
+// gapi.load('client', initClient);
 
 function initClient() {
     gapi.client.init({
@@ -61,7 +61,7 @@ function initClient() {
     });
 }
 
-function handleSearch(event) {
+function handleSearch1(event) {
     event.preventDefault();
 
     var searchValue = document.querySelector('#search-input').value;
@@ -82,4 +82,29 @@ function searchVideos(query) {
     });
 }
 
-formEl.addEventListener("submit", handleSearch)
+// formEl.addEventListener("submit", handleSearch2)
+
+// Call 
+var edamamAppId = "cd4e5584";
+var edamamAppKey = "73d84eab9b2b08ba19b3a16596fc6954";
+var exampleChicken = "chicken";
+// function handleSearch2() {
+//     console.log("Hit");
+    $("#search-test").click(function handleSearch2 () {
+        $.get(`https://api.edamam.com/search?app_id=${edamamAppId}&app_key=${edamamAppKey}&q=${exampleChicken}`, function (data) {
+            // $(".result").html(data);
+            // var returnData = jQuery.parseJSON(data);
+            // Handle the response data here
+            // $("#recipe-list").html(data);
+            // $("#recipe-list").text(data.hits[0].recipe.label);
+            console.log(data);
+            console.log(data.hits[0].recipe.label);
+            for(let i = 0; i < data.hits.length; i++) {
+            $("<p />", { text: data.hits[i].recipe.label }).appendTo("#recipe-list");
+            }
+        });
+    });
+// };
+
+// const testButton = document.querySelector("#search-test");
+// testButton.addEventListener("click", handleSearch2);
