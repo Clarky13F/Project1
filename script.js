@@ -82,21 +82,30 @@ function searchVideos(query) {
     });
 }
 
-// formEl.addEventListener("submit", handleSearch2)
+// Call Recipe API
+var edamamRecipeAppId = "cd4e5584";
+var edamamRecipeAppKey = "73d84eab9b2b08ba19b3a16596fc6954";
+var exampleRecipeChicken = "chicken";
 
-// Call 
-var edamamAppId = "cd4e5584";
-var edamamAppKey = "73d84eab9b2b08ba19b3a16596fc6954";
-var exampleChicken = "chicken";
-// function handleSearch2() {
-//     console.log("Hit");
-    $("#search-test").click(function handleSearch2 () {
-        $.get(`https://api.edamam.com/search?app_id=${edamamAppId}&app_key=${edamamAppKey}&q=${exampleChicken}`, function (data) {
-            // $(".result").html(data);
-            // var returnData = jQuery.parseJSON(data);
-            // Handle the response data here
-            // $("#recipe-list").html(data);
-            // $("#recipe-list").text(data.hits[0].recipe.label);
+$("#search-test1").click(function handleSearch2 () {
+    $("#recipe-list").html("");
+    $.get(`https://api.edamam.com/search?app_id=${edamamRecipeAppId}&app_key=${edamamRecipeAppKey}&q=${exampleRecipeChicken}`, function (data) {
+        console.log(data);
+        console.log(data.hits[0].recipe.label);
+        for(let i = 0; i < data.hits.length; i++) {
+        $("<p />", { text: data.hits[i].recipe.label }).appendTo("#recipe-list");
+        }
+    });
+});
+
+// Call Ingredient API
+var edamamIngredientAppId = "d01e0992";
+var edamamIngredientAppKey = "05456ac1f21695133da813475b3f88f8";
+var exampleIngredientChicken = "chicken";
+
+    $("#search-test2").click(function handleSearch3 () {
+        $("#Ingredient-list").html("");
+        $.get(`https://api.edamam.com/search?app_id=${edamamIngredientAppId}&app_key=${edamamIngredientAppKey}&q=${exampleIngredientChicken}`, function (data) {
             console.log(data);
             console.log(data.hits[0].recipe.label);
             for(let i = 0; i < data.hits.length; i++) {
@@ -104,7 +113,3 @@ var exampleChicken = "chicken";
             }
         });
     });
-// };
-
-// const testButton = document.querySelector("#search-test");
-// testButton.addEventListener("click", handleSearch2);
