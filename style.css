@@ -1,21 +1,27 @@
+
 header {
     background-color: #007bff;
+    padding: 20px 0;
+    text-align: center;
 }
 
 h1 {
-    font-size: 28px;
-    margin-bottom: 20px;
+    font-size: 32px;
+    color: white;
 }
 
-/* Customize the search input */
+
 #search-input {
     border-color: #007bff;
-    font-size: 18px;
+    font-size: 20px;
     padding: 10px;
     border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
 }
 
-/* Style the recipe list */
+
 #recipe-list {
     margin-top: 20px;
 }
@@ -23,21 +29,38 @@ h1 {
 .recipe-item {
     background-color: #fff;
     border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px black;
+}
+
+.recipe-item h2 {
+    font-size: 24px;
     margin-bottom: 10px;
+}
+
+.recipe-item p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+
+.no-recipes {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+
+.recipe-item {
+    border: 1px solid #ccc;
     padding: 10px;
-    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-button {
-    border: none;
-    appearance: none;
-    cursor: pointer;
-    background-color: inherit;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 40px;
-}
 
- 
-  
+.recipe-image {
+    max-width: 100%;
+    height: auto;
+}
