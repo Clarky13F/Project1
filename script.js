@@ -39,6 +39,14 @@ searchInput.addEventListener('input', () => {
     displayRecipes(searchTerm);
 });
 
+$(searchInput).keypress(function(event) {
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if (keycode == '13') {
+        console.log('You pressed a "enter" key in somewhere.');
+        handleSearch1();
+    }
+});
+
 // Initial display of all recipes
 // displayRecipes('');
 
@@ -49,20 +57,19 @@ searchInput.addEventListener('input', () => {
 const formEl = document.querySelector("#search-form");
 
 
-// gapi.load('client', initClient);
+gapi.load('client', initClient);
 
 function initClient() {
     gapi.client.init({
-        apiKey: 'put our own api key to use',
+        apiKey: 'AIzaSyB0CEWjg3JYSVDh742-xOUpieEeiZE1UMA',
         discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"],
     }).then(function () {
-        
         console.log('api ready');
     });
 }
 
 function handleSearch1(event) {
-    event.preventDefault();
+    // event.preventDefault();
 
     var searchValue = document.querySelector('#search-input').value;
 
