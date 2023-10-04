@@ -52,17 +52,16 @@ function displayRecipes(recipeData) {
 // var formEl = document.querySelector("#search-form");
 
 
-// gapi.load('client', initClient);
+gapi.load('client', initClient);
 
-// function initClient() {
-//     gapi.client.init({
-//         apiKey: 'put our own api key to use',
-//         discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"],
-//     }).then(function () {
-
-//         console.log('api ready');
-//     });
-// }
+function initClient() {
+    gapi.client.init({
+        apiKey: 'AIzaSyB0CEWjg3JYSVDh742-xOUpieEeiZE1UMA',
+        discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"],
+    }).then(function () {
+        console.log('api ready');
+    });
+}
 
 // function handleSearch1(event) {
 //     event.preventDefault();
