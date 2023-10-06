@@ -49,14 +49,11 @@ function displayRecipes(recipeData) {
         recipeList.appendChild(recipeItem);
     });
 
-    const favButton = document.createElement('button');
-favButton.textContent = 'Favorite me!';
-document.body.appendChild(favButton)
-
-favButton.addEventListener('click', () => {
-    var recipeName = document.getElementById('recipe').value;
-    localStorage.setItem('recipe', recipeName);
-})
+}
+// favButton.addEventListener('click', () => {
+//     var recipeName = document.getElementById('recipe').value;
+//     localStorage.setItem('recipe', recipeName);
+// })
 
 
 
