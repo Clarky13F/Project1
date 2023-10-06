@@ -12,21 +12,8 @@ searchButton.addEventListener('click', () => {
     });
 });
 
-function displayRecipes(recipeData) {
-    recipeList.innerHTML = '';
-var edamamAppId = "cd4e5584";
-var edamamAppKey = "73d84eab9b2b08ba19b3a16596fc6954";
 
-var searchInput = document.getElementById('search-input');
-var recipeList = document.getElementById('recipe-list');
-var searchButton = document.getElementById('search-button');
 
-searchButton.addEventListener('click', () => {
-    var searchTerm = searchInput.value.trim();
-    $.get(`https://api.edamam.com/search?app_id=${edamamAppId}&app_key=${edamamAppKey}&q=${searchTerm}`, function (data) {
-        displayRecipes(data);
-    });
-});
 
 function displayRecipes(recipeData) {
     recipeList.innerHTML = '';
@@ -49,7 +36,8 @@ function displayRecipes(recipeData) {
         recipeItem.innerHTML = `
             <h2>
                 ${recipe.label}
-                <button>Favorite *</button>
+                <button>Favorite</button>
+                
             </h2>
             <img src="${recipe.image}" alt="${recipe.label}" class="recipe-image">
             <ul>
@@ -60,7 +48,15 @@ function displayRecipes(recipeData) {
         `;
         recipeList.appendChild(recipeItem);
     });
-}
+
+    const favButton = document.createElement('button');
+favButton.textContent = 'Favorite me!';
+document.body.appendChild(favButton)
+
+favButton.addEventListener('click', () => {
+    var recipeName = document.getElementById('recipe').value;
+    localStorage.setItem('recipe', recipeName);
+})
 
 
 
@@ -109,4 +105,5 @@ function initClient() {
 // document.body.appendChild(favButton)
 
 // favButton.addEventListener('click', () => {
-// alert('Favorite button clicked!');
+// alert('Favorite button clicked!'):
+}
