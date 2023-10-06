@@ -1,6 +1,7 @@
 var edamamAppId = "cd4e5584";
 var edamamAppKey = "73d84eab9b2b08ba19b3a16596fc6954";
-
+var youtubeApiKey = 'AIzaSyB0CEWjg3JYSVDh742-xOUpieEeiZE1UMA';
+var youtubeApiKey2 = 'AIzaSyCNgCA2AhwK4oqa3dAvIofgE2d8HqpmKno'
 var searchInput = document.getElementById('search-input');
 var recipeList = document.getElementById('recipe-list');
 var searchButton = document.getElementById('search-button');
@@ -12,7 +13,7 @@ searchButton.addEventListener('click', () => {
     });
 });
 
-function displayRecipes(recipeData) {
+async function displayRecipes(recipeData) {
     recipeList.innerHTML = '';
 
     var recipeCount = recipeData.hits.length
@@ -26,20 +27,44 @@ function displayRecipes(recipeData) {
         return recipe.recipe;
     });
 
-    recipes.forEach(recipe => {
+var videoThumbnail; // "ImagePlaceholder_icon.png"
+
+    try {
+        const allVideos = await Promise.all(recipes.map((recipe) => handleSearch1(recipe.label)));
+
+        var finalRecipes = recipes.map((recipe, i) => {
+            return {
+                ...recipe,
+                youtubeObj: allVideos[i]
+            }
+        })
+
+        console.log(finalRecipes);
+
+    } catch(err) {
+        console.log(err);
+    };
+
+
+    finalRecipes.forEach(recipe => {
         var recipeItem = document.createElement('div');
         recipeItem.classList.add('recipe-item');
         recipeItem.innerHTML = `
-            <h2>
-                ${recipe.label}
-                <button>Favorite *</button>
-            </h2>
-            <img src="${recipe.image}" alt="${recipe.label}" class="recipe-image">
-            <ul>
-                <li>
-                    ${recipe.ingredientLines.join("</li><li>")}
-                </li>
-            </ul>
+            <div>
+                <h2>
+                    ${recipe.label}
+                    <button>Favorite *</button>
+                </h2>
+                <img src="${recipe.image}" alt="${recipe.label}" class="recipe-image">
+                <ul>
+                    <li>
+                        ${recipe.ingredientLines.join("</li><li>")}
+                    </li>
+                </ul>
+            </div>
+            <a href="https://youtube.com/watch?v=${recipe.youtubeObj.items[0].id.videoId}" target="_blank">
+                <img class="tutorial-thumbnail ${recipe.label}" src=${recipe.youtubeObj.items[0].snippet.thumbnails.high.url} alt=${recipe.youtubeObj.items[0].snippet.title}></img>
+            </a>
         `;
         recipeList.appendChild(recipeItem);
     });
@@ -56,30 +81,42 @@ gapi.load('client', initClient);
 
 function initClient() {
     gapi.client.init({
-        apiKey: 'AIzaSyB0CEWjg3JYSVDh742-xOUpieEeiZE1UMA',
+        apiKey: youtubeApiKey2, // AIzaSyB0CEWjg3JYSVDh742-xOUpieEeiZE1UMA
         discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"],
     }).then(function () {
         console.log('api ready');
     });
 }
 
-// function handleSearch1(event) {
-//     event.preventDefault();
+function handleSearch1(recipe) {
+    // event.preventDefault();
 
-//     var searchValue = document.querySelector('#search-input').value;
+    // var searchValue = document.querySelector('#search-input').value;
+    var searchValue = "how to make" + recipe;
 
-//     searchVideos(searchValue);
-// }
+    return searchVideos(searchValue); // searchVideos(searchValue)
+}
 
-// function searchVideos(query) {
-//     var request = gapi.client.youtube.search.list({
-//         part: 'snippet',
-//         q: query,
-//         maxResults: 10  // You can adjust this number based on your preference
-//     });
+function searchVideos(query) {
 
-//     request.execute(function (response) {
-//         // Handle the response data here
-//         console.log(response);
-//     });
-// }
+    return new Promise((resolve, reject) => {
+        var request = gapi.client.youtube.search.list({
+            part: 'snippet',
+            q: query,
+            maxResults: 1  // You can adjust this number based on your preference
+        });
+    
+        request.execute(function (response) {
+            try{
+                // Handle the response data here
+                // console.log(response);
+                // videoThumbnail = response.items[0].snippet.thumbnails.high.url || [];
+                // console.log(videoThumbnail);
+                resolve(response);
+            } catch(error) {
+                reject(response);
+            }
+        });
+    })
+
+}
