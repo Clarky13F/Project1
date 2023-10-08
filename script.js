@@ -1,7 +1,9 @@
 var edamamAppId = "cd4e5584";
 var edamamAppKey = "73d84eab9b2b08ba19b3a16596fc6954";
 var youtubeApiKey = 'AIzaSyB0CEWjg3JYSVDh742-xOUpieEeiZE1UMA';
-var youtubeApiKey2 = 'AIzaSyCNgCA2AhwK4oqa3dAvIofgE2d8HqpmKno'
+var youtubeApiKey2 = 'AIzaSyCNgCA2AhwK4oqa3dAvIofgE2d8HqpmKno';
+var youtubeApiKey3 = 'AIzaSyCD3iJyR0AmB5iSvWtGNi53q2jJDsZm2xQ';
+var youtubeApiKey4 = 'AIzaSyAZSaMI-qcowuxex2Ihcn6zoVgwdlEafBg';
 var searchInput = document.getElementById('search-input');
 var recipeList = document.getElementById('recipe-list');
 var searchButton = document.getElementById('search-button');
@@ -26,6 +28,7 @@ async function displayRecipes(recipeData) {
     var recipes = recipeData.hits.map(function(recipe) {
         return recipe.recipe;
     });
+    
 
 var videoThumbnail; // "ImagePlaceholder_icon.png"
 
@@ -50,26 +53,47 @@ var videoThumbnail; // "ImagePlaceholder_icon.png"
         var recipeItem = document.createElement('div');
         recipeItem.classList.add('recipe-item');
         recipeItem.innerHTML = `
-            <div>
+            <div class="recipe-heading">
                 <h2>
                     ${recipe.label}
-                    <button>Favorite *</button>
                 </h2>
-                <img src="${recipe.image}" alt="${recipe.label}" class="recipe-image">
-                <ul>
-                    <li>
-                        ${recipe.ingredientLines.join("</li><li>")}
-                    </li>
-                </ul>
+                <button data-recipe='${JSON.stringify(recipe)}' type="button" class="btn btn-danger fav-btn">Favorite</button>
             </div>
-            <a href="https://youtube.com/watch?v=${recipe.youtubeObj.items[0].id.videoId}" target="_blank">
-                <img class="tutorial-thumbnail ${recipe.label}" src=${recipe.youtubeObj.items[0].snippet.thumbnails.high.url} alt=${recipe.youtubeObj.items[0].snippet.title}></img>
-            </a>
+            <div class="recipe-body">
+                <div class="recipe-div recipe-body-item">
+                    <img src="${recipe.image}" alt="${recipe.label}" class="recipe-image">
+                    <ul>
+                        <li>
+                            ${recipe.ingredientLines.join("</li><li>")}
+                        </li>
+                    </ul>
+                </div>
+                <a class="recipe-body-item" href="https://youtube.com/watch?v=${recipe.youtubeObj.items[0].id.videoId}" target="_blank">
+                    <img class="recipe-image tutorial-thumbnail ${recipe.label}" src=${recipe.youtubeObj.items[0].snippet.thumbnails.high.url} alt=${recipe.youtubeObj.items[0].snippet.title}></img>
+                </a>
+            </div>
         `;
         recipeList.appendChild(recipeItem);
     });
-}
 
+}
+// favButton.addEventListener('click', () => {
+//     var recipeName = document.getElementById('recipe').value;
+//     localStorage.setItem('recipe', recipeName);
+// })
+
+$("#recipe-list").on('click', ".fav-btn", function() {
+    var recipe = $(this).attr('data-recipe');
+
+    // get all saved recipes
+    var favsArr = JSON.parse(localStorage.getItem('favsArr')) || [];
+    // // add this html to saved recipes
+    favsArr.push(JSON.parse(recipe));
+    // // save new recipes arr
+    localStorage.setItem('favsArr', JSON.stringify(favsArr));
+//create tab for saved favorites
+//loop over local storage
+});
 
 
 
@@ -77,11 +101,12 @@ var videoThumbnail; // "ImagePlaceholder_icon.png"
 // var formEl = document.querySelector("#search-form");
 
 
+
 gapi.load('client', initClient);
 
 function initClient() {
     gapi.client.init({
-        apiKey: youtubeApiKey2, // AIzaSyB0CEWjg3JYSVDh742-xOUpieEeiZE1UMA
+        apiKey: youtubeApiKey4, // AIzaSyB0CEWjg3JYSVDh742-xOUpieEeiZE1UMA
         discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"],
     }).then(function () {
         console.log('api ready');
