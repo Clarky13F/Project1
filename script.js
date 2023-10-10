@@ -145,3 +145,9 @@ function searchVideos(query) {
     })
 
 }
+
+
+document.getElementById("favorites-button").addEventListener("click", function() {
+    console.log('hit');
+    location.assign('./favs.html');
+})
