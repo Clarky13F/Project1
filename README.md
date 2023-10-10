@@ -1,7 +1,9 @@
 # Project1: Interactive Front-End Application
 
-## Descrption
+## Description
+ - We wanted to create a search that allows the user to search recipes by their ingredients and favorite their favorite results.
 
-## Photo 
+## Photo
 
-## Deplyed Link
+
+## Deployed Link
