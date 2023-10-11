@@ -4,6 +4,8 @@ var youtubeApiKey = 'AIzaSyB0CEWjg3JYSVDh742-xOUpieEeiZE1UMA';
 var youtubeApiKey2 = 'AIzaSyCNgCA2AhwK4oqa3dAvIofgE2d8HqpmKno';
 var youtubeApiKey3 = 'AIzaSyCD3iJyR0AmB5iSvWtGNi53q2jJDsZm2xQ';
 var youtubeApiKey4 = 'AIzaSyAZSaMI-qcowuxex2Ihcn6zoVgwdlEafBg';
+var apiKeyArr = [youtubeApiKey, youtubeApiKey2, youtubeApiKey3, youtubeApiKey4];
+
 var searchInput = document.getElementById('search-input');
 var recipeList = document.getElementById('recipe-list');
 var searchButton = document.getElementById('search-button');
@@ -35,6 +37,14 @@ var videoThumbnail; // "ImagePlaceholder_icon.png"
     try {
         const allVideos = await Promise.all(recipes.map((recipe) => handleSearch1(recipe.label)));
 
+        console.log(allVideos);
+
+        if(allVideos[0].error) {
+            recipeList.innerHTML = `
+            <h2>An Error Ocurred, Please Try Again.</h2>
+        `
+        }
+
         var finalRecipes = recipes.map((recipe, i) => {
             return {
                 ...recipe,
@@ -45,6 +55,7 @@ var videoThumbnail; // "ImagePlaceholder_icon.png"
         console.log(finalRecipes);
 
     } catch(err) {
+        console.log('hit ----------------')
         console.log(err);
     };
 
@@ -106,7 +117,7 @@ gapi.load('client', initClient);
 
 function initClient() {
     gapi.client.init({
-        apiKey: youtubeApiKey4, // AIzaSyB0CEWjg3JYSVDh742-xOUpieEeiZE1UMA
+        apiKey: apiKeyArr[Math.floor(Math.random() * apiKeyArr.length)], // AIzaSyB0CEWjg3JYSVDh742-xOUpieEeiZE1UMA
         discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"],
     }).then(function () {
         console.log('api ready');
