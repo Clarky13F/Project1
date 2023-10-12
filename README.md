@@ -1,5 +1,4 @@
 # Project1: Interactive Front-End Application
- - RecipeMe is the name of our application.  Elevator Pitch:  Thank you for taking a look at RecipeMe, your one-stop shop for recipes.  All you have to do is search any ingredient you want to find any recipe you desire.  You can also favorite recipes and view those favorites on a separate page.
 
 ## Description
  - We wanted to create a search that allows the user to search recipes by their ingredients and favorite their favorite results.
@@ -14,7 +13,7 @@
 
 ## Credits
  - This website was coded by Katoria, Brandon Clark, and Joseph Dakota Johnson.
- - Instructor Caleb Crum helped us during class by showing us ways we can work on the APIs and saving to local storage through the favorite button. [Caleb's GitHub account](https://github.com/CalebCrumInstructor)
+ - Instructor Caleb Crum helped us during class by showing us ways we can work on the APIs, saving to local storage through the 'Favorite' button, and providing an error response when YouTube's API calls have met their quota. [Caleb's GitHub account](https://github.com/CalebCrumInstructor)
  - Katoria worked on saving to local storage and the favorite button.
  - Clark worked on styling through Bootstrap and CSS, cleaning up the code, and figuring out the JavaScript.
  - Dakota worked on the Edamam API, the YouTube API, and making the video an external link.
@@ -30,13 +29,13 @@
 
 ## Features
  - When the user types in a name of an ingredient and clicks the 'Search' button, they will be presented with an array of recipes that can be made with that ingredient and the additional ingredients necessary for the recipes.
- - Then, the user may click the favorite button on any of the recipes to save them to local storage.
+ - Then, the user may click the 'Favorite' button on any of the recipes to save them to local storage.
  - If the user wants to see how the recipe is made, he or she may click the video to be redirected to a YouTube tutorial video.
  - If the user clicks the 'See Favorites' button, he or she will be redirected to another page that shows their previously favorited recipes.
  - Then, the user may click the 'Go To Search' button to return back to the homepage.
 
 ## Photo
- - This is a screenshot of the application: ![Application Screenshot](images/Website_Screen_Capture.JPG).
+ - This is a screenshot of the application: ![Application Screenshot](images/Website_Screen_Capture2.JPG).
 
 ## Deployment Link
  - This is a link to the fully deployed application: (https://clarky13f.github.io/Project1/).
